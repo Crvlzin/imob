@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Fundo azul corporativo arredondado -->
+  <rect width="64" height="64" rx="16" fill="#1D4ED8"/>
+  
+  <!-- Chaminé moderna -->
+  <path d="M42 16V22.5L47 26.5V16H42Z" fill="#F8FAFC" opacity="0.9"/>
+
+  <!-- Estrutura da casa -->
+  <path d="M32 14L14 28.5V47C14 48.6569 15.3431 50 17 50H26V37C26 36.4477 26.4477 36 27 36H37C37.5523 36 38 36.4477 38 37V50H47C48.6569 50 50 48.6569 50 47V28.5L32 14Z" fill="#FFFFFF"/>
+  
+  <!-- Ponto do logo imob. -->
+  <circle cx="50" cy="14" r="3.5" fill="#10B981"/>
+</svg>
