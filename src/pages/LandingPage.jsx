@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { 
-  ShieldCheck, 
-  CheckCircle2, 
-  Building2, 
-  TrendingUp, 
-  Scale, 
-  Landmark, 
-  ArrowRight, 
-  MessageCircle, 
-  Star, 
-  HelpCircle, 
-  Clock, 
+import {
+  ShieldCheck,
+  CheckCircle2,
+  Building2,
+  TrendingUp,
+  Scale,
+  Landmark,
+  ArrowRight,
+  MessageCircle,
+  Star,
+  HelpCircle,
+  Clock,
   Award,
   ChevronDown,
   Sparkles,
@@ -84,22 +84,16 @@ export default function LandingPage() {
 
   return (
     <div className="bg-slate-950 text-slate-100 font-sans selection:bg-brand-500 selection:text-white">
-      
+
       {/* 1. HERO SECTION (Sem vídeo, alta conversão e impacto visual) */}
       <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-12 pb-20 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
-        
+
         {/* Fundo com iluminação atmosférica e textura corporativa */}
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 z-0"></div>
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-brand-600/20 rounded-full blur-[120px] pointer-events-none"></div>
         <div className="absolute top-1/3 right-10 w-[300px] h-[300px] bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
-          
-          {/* Badge de Autoridade */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-950/80 border border-brand-500/30 text-brand-300 text-xs sm:text-sm font-semibold tracking-wide uppercase shadow-lg shadow-brand-950/50 mb-8 animate-fade-in">
-            <Sparkles className="w-4 h-4 text-brand-400" />
-            <span>Consultoria Imobiliária Privada • Imob</span>
-          </div>
 
           {/* Título Principal com text-wrap balanceado para mobile */}
           <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-white tracking-tight leading-snug sm:leading-[1.15] max-w-4xl mb-4 sm:mb-6 [text-wrap:balance]">
@@ -107,9 +101,8 @@ export default function LandingPage() {
           </h1>
 
           {/* Subtítulo persuasivo com text-wrap pretty */}
-          <p className="text-sm sm:text-lg lg:text-xl text-slate-300 font-normal max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed [text-wrap:pretty]">
-            Elimine semanas de buscas frustrantes. Tenha um especialista sênior dedicado a encontrar, negociar e aprovar o seu imóvel sob medida, sem custo algum para você.
-          </p>
+          <p className="text-sm sm:text-lg lg:text-xl text-slate-300 font-normal max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed [text-wrap:pretty]" />
+          Elimine semanas de buscas frustrantes. Tenha um especialista sênior dedicado a encontrar, negociar e aprovar o seu imóvel sob medida.
 
           {/* Botões de Ação */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto mb-12 sm:mb-14">
@@ -117,7 +110,7 @@ export default function LandingPage() {
               onClick={scrollToForm}
               className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-brand-600 hover:bg-brand-500 active:scale-95 text-white font-bold text-sm sm:text-lg shadow-xl shadow-brand-600/25 transition-all flex items-center justify-center gap-3 border border-brand-400/30"
             >
-              <span>Solicitar Consultoria Gratuita</span>
+              <span>Solicitar Consultoria</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
@@ -128,7 +121,7 @@ export default function LandingPage() {
               className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-white font-semibold text-sm sm:text-lg border border-slate-700 hover:border-slate-600 transition-all flex items-center justify-center gap-2.5 backdrop-blur-sm"
             >
               <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
-              <span>Falar pelo WhatsApp</span>
+              <span>Entre em contato</span>
             </a>
           </div>
 
@@ -240,13 +233,13 @@ export default function LandingPage() {
       {/* 3. FORMULÁRIO DE CAPTAÇÃO / DIAGNÓSTICO VIP */}
       <section id="consultoria-form" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/40 border-y border-slate-800 relative">
         <div className="max-w-4xl mx-auto">
-          
+
           <div className="text-center mb-12">
             <span className="inline-block px-3.5 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-4">
               Atendimento Sem Compromisso
             </span>
             <h3 className="text-2xl sm:text-4xl font-heading font-extrabold text-white tracking-tight mb-3">
-              Receba Sua Curadoria de Imóveis VIP
+              Receba Sua Curadoria de Imóveis
             </h3>
             <p className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
               Preencha os campos abaixo para que nosso especialista prepare uma seleção exclusiva e entre em contato via WhatsApp.
@@ -254,7 +247,7 @@ export default function LandingPage() {
           </div>
 
           <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-            
+
             {formSubmitted ? (
               <div className="text-center py-12 px-4 animate-fade-in">
                 <div className="w-16 h-16 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-950/50">
@@ -286,7 +279,7 @@ export default function LandingPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                
+
                 {/* Linha 1: Objetivo & Orçamento */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
@@ -300,9 +293,7 @@ export default function LandingPage() {
                       className="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none"
                     >
                       <option value="Moradia Própria">Moradia Própria (Comprar para morar)</option>
-                      <option value="Investimento">Investimento (Renda ou Valorização)</option>
-                      <option value="Primeiro Imóvel">Financiamento do Primeiro Imóvel</option>
-                      <option value="Up-grade de Padrão">Upgrade de Imóvel / Alto Padrão</option>
+                      <option value="Alugar">Alugar (Alugar para morar)</option>
                     </select>
                   </div>
 
@@ -316,10 +307,9 @@ export default function LandingPage() {
                       onChange={handleInputChange}
                       className="w-full px-4 py-3.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none"
                     >
-                      <option value="Até R$ 500 mil">Até R$ 500 mil</option>
-                      <option value="R$ 500 mil a R$ 1,2 milhão">R$ 500 mil a R$ 1,2 milhão</option>
-                      <option value="R$ 1,2 milhão a R$ 3 milhões">R$ 1,2 milhão a R$ 3 milhões</option>
-                      <option value="Acima de R$ 3 milhões">Acima de R$ 3 milhões (Alto Padrão)</option>
+                      <option value="Até 500 mil">Até 500 mil</option>
+                      <option value="R$ 500 mil a R$ 1 milhão">R$ 500 mil a R$ 1 milhão</option>
+                      <option value="Acima de R$ 1 milhão">Acima de R$ 1 milhão</option>
                     </select>
                   </div>
                 </div>
@@ -343,7 +333,7 @@ export default function LandingPage() {
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
-                      WhatsApp com DDD *
+                      Contato
                     </label>
                     <input
                       type="tel"
@@ -375,7 +365,7 @@ export default function LandingPage() {
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
-                      Bairro ou Cidade de Preferência
+                      Região de Interesse
                     </label>
                     <input
                       type="text"
@@ -489,7 +479,7 @@ export default function LandingPage() {
 
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <div 
+            <div
               key={index}
               className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden transition-all"
             >
