@@ -6,6 +6,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  const isLandingPage = location.pathname === '/lp' || location.pathname === '/consultoria';
   const isCurrent = (path) => location.pathname === path;
 
   return (
@@ -27,43 +28,36 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Menu Desktop Centralizado no Meio da Tela */}
-          <nav className="hidden md:flex items-center gap-8 font-sans font-semibold text-slate-600 text-sm absolute left-1/2 -translate-x-1/2 z-10">
-            <Link
-              to="/"
-              className={`transition-colors py-1.5 ${isCurrent('/') ? 'text-brand-700 font-bold border-b-2 border-brand-700' : 'hover:text-brand-600'
-                }`}
-            >
-              Início
-            </Link>
-            <Link
-              to="/imoveis"
-              className={`transition-colors py-1.5 ${isCurrent('/imoveis') ? 'text-brand-700 font-bold border-b-2 border-brand-700' : 'hover:text-brand-600'
-                }`}
-            >
-              Imóveis
-            </Link>
-
-            <a href="/#depoimentos" className="hover:text-brand-700 transition-colors py-1.5">
-              Avaliações
-            </a>
-            <a href="/#contato" className="hover:text-brand-700 transition-colors py-1.5">
-              Contato
-            </a>
-          </nav>
-
-          {/* Lado Direito (Menu Mobile em Telas Menores) */}
-          <div className="flex items-center gap-2 z-10">
-            <div className="md:hidden flex items-center gap-2">
-              <a
-                href="https://wa.me/5511999998888?text=Olá!%20Gostaria%20de%20atendimento%20da%20Imob."
-                target="_blank"
-                rel="noreferrer"
-                className="p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg"
-                title="WhatsApp"
+          {/* Menu Desktop Centralizado (Oculto na Landing Page para focar em conversão) */}
+          {!isLandingPage && (
+            <nav className="hidden md:flex items-center gap-8 font-sans font-semibold text-slate-600 text-sm absolute left-1/2 -translate-x-1/2 z-10">
+              <Link
+                to="/"
+                className={`transition-colors py-1.5 ${isCurrent('/') ? 'text-brand-700 font-bold border-b-2 border-brand-700' : 'hover:text-brand-600'
+                  }`}
               >
-                <MessageCircle className="w-6 h-6" />
+                Início
+              </Link>
+              <Link
+                to="/imoveis"
+                className={`transition-colors py-1.5 ${isCurrent('/imoveis') ? 'text-brand-700 font-bold border-b-2 border-brand-700' : 'hover:text-brand-600'
+                  }`}
+              >
+                Imóveis
+              </Link>
+
+              <a href="/#depoimentos" className="hover:text-brand-700 transition-colors py-1.5">
+                Avaliações
               </a>
+              <a href="/#contato" className="hover:text-brand-700 transition-colors py-1.5">
+                Contato
+              </a>
+            </nav>
+          )}
+
+          {/* Lado Direito (Menu Hamburguer Mobile nas páginas normais) */}
+          {!isLandingPage && (
+            <div className="flex items-center gap-2 z-10 md:hidden">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="p-2 text-gray-600 hover:text-gray-900 rounded-lg focus:outline-none"
@@ -72,12 +66,12 @@ export default function Navbar() {
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
-      {/* Menu Dropdown Mobile */}
-      {mobileMenuOpen && (
+      {/* Menu Dropdown Mobile (Oculto na Landing Page) */}
+      {!isLandingPage && mobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 px-4 pt-3 pb-6 space-y-3 shadow-lg">
           <nav className="flex flex-col gap-2 font-medium text-gray-700 text-base">
             <Link
