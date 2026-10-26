@@ -3,6 +3,7 @@ import { ArrowRight, ChevronDown } from 'lucide-react';
 
 export default function Hero({ onExploreClick }) {
   const [progress, setProgress] = useState(0);
+  const [isVideoReady, setIsVideoReady] = useState(false);
 
   const containerRef = useRef(null);
   const videoRef = useRef(null);
@@ -12,9 +13,35 @@ export default function Hero({ onExploreClick }) {
     const container = containerRef.current;
     if (!container || !video) return;
 
-    video.pause();
+    let targetTime = 0;
+    let isSeeking = false;
+    let isPrimed = false;
+    let animationFrameId = null;
 
-    let ticking = false;
+    // Realiza o seek de forma segura, respeitando o estado do decodificador móvel
+    const performSeek = () => {
+      if (!video || !video.duration || isNaN(video.duration)) return;
+      if (isSeeking || video.seeking) return;
+
+      // Evita sobrecarga se a diferença de tempo for insignificante (< ~1 frame)
+      if (Math.abs(video.currentTime - targetTime) < 0.03) return;
+
+      try {
+        isSeeking = true;
+        video.currentTime = targetTime;
+      } catch (e) {
+        isSeeking = false;
+      }
+    };
+
+    const handleSeeked = () => {
+      isSeeking = false;
+      // Se enquanto estava buscando o frame anterior o usuário continuou rolando,
+      // busca o novo frame atualizado imediatamente
+      if (Math.abs(video.currentTime - targetTime) >= 0.03) {
+        performSeek();
+      }
+    };
 
     const updateVideoPosition = () => {
       const rect = container.getBoundingClientRect();
@@ -30,35 +57,85 @@ export default function Hero({ onExploreClick }) {
       setProgress(clampedProgress);
 
       if (video.duration && !isNaN(video.duration)) {
-        const targetTime = clampedProgress * video.duration;
-        video.currentTime = targetTime;
-      }
-
-      ticking = false;
-    };
-
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(updateVideoPosition);
-        ticking = true;
+        targetTime = clampedProgress * video.duration;
+        performSeek();
       }
     };
 
-    const onVideoReady = () => {
-      video.pause();
+    const onScrollOrTouch = () => {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(updateVideoPosition);
+    };
+
+    // "Prime" / Desbloqueio do decodificador de vídeo por hardware no iOS Safari e Android Chrome
+    const primeVideoPlayback = () => {
+      if (isPrimed) return;
+      isPrimed = true;
+
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            video.pause();
+            setIsVideoReady(true);
+            updateVideoPosition();
+          })
+          .catch(() => {
+            // Em navegadores móveis com restrição de autoplay, desbloqueia no primeiro gesto
+            const unlockOnTouch = () => {
+              video.play()
+                .then(() => {
+                  video.pause();
+                  setIsVideoReady(true);
+                  updateVideoPosition();
+                })
+                .catch(() => {});
+              window.removeEventListener('touchstart', unlockOnTouch);
+              window.removeEventListener('touchend', unlockOnTouch);
+              window.removeEventListener('scroll', unlockOnTouch);
+            };
+
+            window.addEventListener('touchstart', unlockOnTouch, { passive: true, once: true });
+            window.addEventListener('touchend', unlockOnTouch, { passive: true, once: true });
+            window.addEventListener('scroll', unlockOnTouch, { passive: true, once: true });
+          });
+      }
+    };
+
+    const onLoadedMetadata = () => {
+      primeVideoPlayback();
+    };
+
+    const onCanPlay = () => {
+      setIsVideoReady(true);
       updateVideoPosition();
     };
 
-    video.addEventListener('loadedmetadata', onVideoReady);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
+    video.addEventListener('seeked', handleSeeked);
+    video.addEventListener('loadedmetadata', onLoadedMetadata);
+    video.addEventListener('loadeddata', onCanPlay);
+    video.addEventListener('canplay', onCanPlay);
+
+    // Se metadados já estiverem disponíveis (cache ou fast load)
+    if (video.readyState >= 1) {
+      primeVideoPlayback();
+    }
+
+    window.addEventListener('scroll', onScrollOrTouch, { passive: true });
+    window.addEventListener('touchmove', onScrollOrTouch, { passive: true });
+    window.addEventListener('resize', onScrollOrTouch, { passive: true });
 
     updateVideoPosition();
 
     return () => {
-      video.removeEventListener('loadedmetadata', onVideoReady);
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      video.removeEventListener('seeked', handleSeeked);
+      video.removeEventListener('loadedmetadata', onLoadedMetadata);
+      video.removeEventListener('loadeddata', onCanPlay);
+      video.removeEventListener('canplay', onCanPlay);
+      window.removeEventListener('scroll', onScrollOrTouch);
+      window.removeEventListener('touchmove', onScrollOrTouch);
+      window.removeEventListener('resize', onScrollOrTouch);
     };
   }, []);
 
@@ -78,20 +155,27 @@ export default function Hero({ onExploreClick }) {
       className="relative h-[300vh] bg-slate-950"
     >
       {/* Container Fixo na Tela (Sticky) travado enquanto o vídeo é percorrido pelo scroll */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between">
+      <div className="sticky top-0 h-screen h-[100dvh] w-full overflow-hidden flex flex-col justify-between">
         
         {/* Vídeo de fundo controlado pelo scroll */}
         <div className="absolute inset-0 z-0 bg-slate-950">
           <video
             ref={videoRef}
-            src="./hero-video.mp4"
+            src="/hero-video.mp4"
+            autoPlay
             muted
             playsInline
+            webkit-playsinline="true"
+            x5-playsinline="true"
+            x5-video-player-type="h5"
             preload="auto"
             disablePictureInPicture
             disableRemotePlayback
-            className="w-full h-full object-cover object-[center_35%] pointer-events-none"
-          />
+            className="w-full h-full object-cover object-[center_35%] pointer-events-none transition-opacity duration-300"
+            style={{ opacity: isVideoReady ? 1 : 0.9 }}
+          >
+            <source src="/hero-video.mp4" type="video/mp4" />
+          </video>
 
           {/* Overlay suave com gradiente cinematográfico para contraste perfeito */}
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-slate-950/60"></div>
