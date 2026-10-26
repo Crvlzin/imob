@@ -95,14 +95,20 @@ export default function LandingPage() {
 
         <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
 
-          {/* Título Principal com text-wrap balanceado para mobile */}
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-white tracking-tight leading-snug sm:leading-[1.15] max-w-4xl mb-4 sm:mb-6 [text-wrap:balance]">
-            Encontre o imóvel ideal com <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-brand-200 to-emerald-400">segurança jurídica</span> e as melhores taxas do mercado.
+          {/* Título Principal com formatação impecável em PC e Celular */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-white tracking-tight leading-[1.2] max-w-4xl mx-auto mb-6 text-center">
+            Encontre o imóvel ideal com{' '}
+            <span className="text-blue-400 underline decoration-blue-500/40 decoration-wavy underline-offset-8">
+              segurança jurídica
+            </span>{' '}
+            <br className="hidden sm:inline" />
+            e as melhores taxas do mercado.
           </h1>
 
-          {/* Subtítulo persuasivo com text-wrap pretty */}
-          <p className="text-sm sm:text-lg lg:text-xl text-slate-300 font-normal max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed [text-wrap:pretty]" />
-          Elimine semanas de buscas frustrantes. Tenha um especialista sênior dedicado a encontrar, negociar e aprovar o seu imóvel sob medida.
+          {/* Subtítulo persuasivo devidamente envolvido na tag p */}
+          <p className="text-base sm:text-lg md:text-xl text-slate-300 font-normal max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed text-center">
+            Elimine semanas de buscas frustrantes. Tenha um especialista sênior dedicado a encontrar, negociar e aprovar o seu imóvel sob medida.
+          </p>
 
           {/* Botões de Ação */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto mb-12 sm:mb-14">
