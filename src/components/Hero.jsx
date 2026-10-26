@@ -193,10 +193,10 @@ export default function Hero({ onExploreClick }) {
         <div className="h-20 w-full z-10 shrink-0"></div>
 
         {/* Conteúdo Central Elevado da Hero */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full flex-1 flex flex-col justify-center items-center pb-12 sm:pb-16 -translate-y-4 sm:-translate-y-8">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full flex-1 flex flex-col justify-center items-center pb-8 sm:pb-16 -translate-y-2 sm:-translate-y-8">
           
-          {/* Novo Título H1 Corporativo */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-white tracking-tight leading-[1.1] max-w-3xl mx-auto drop-shadow-2xl mb-8">
+          {/* Novo Título H1 Corporativo com quebra balanceada para qualquer tela */}
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-white tracking-tight leading-snug sm:leading-[1.1] max-w-3xl mx-auto drop-shadow-2xl mb-6 sm:mb-8 [text-wrap:balance]">
             Tire o seu sonho do papel e faça realidade
           </h1>
 
@@ -204,11 +204,11 @@ export default function Hero({ onExploreClick }) {
           <a
             href="#imoveis"
             onClick={handleLinkClick}
-            className="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-brand-600 hover:bg-brand-500 active:scale-95 text-white font-extrabold text-base sm:text-lg shadow-2xl hover:shadow-brand-500/30 transition-all duration-300 border border-white/20 backdrop-blur-sm"
+            className="group inline-flex items-center justify-center gap-2.5 sm:gap-3 px-5 py-3.5 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl bg-brand-600 hover:bg-brand-500 active:scale-95 text-white font-extrabold text-sm sm:text-lg shadow-2xl hover:shadow-brand-500/30 transition-all duration-300 border border-white/20 backdrop-blur-sm max-w-full"
           >
             <span>Faça seu sonho realidade</span>
-            <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center group-hover:translate-x-1 transition-transform">
-              <ArrowRight className="w-5 h-5 text-white" />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/20 flex items-center justify-center group-hover:translate-x-1 transition-transform shrink-0">
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
           </a>
         </div>

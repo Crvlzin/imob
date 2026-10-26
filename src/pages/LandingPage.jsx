@@ -101,33 +101,33 @@ export default function LandingPage() {
             <span>Consultoria Imobiliária Privada • Imob</span>
           </div>
 
-          {/* Título Principal */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-white tracking-tight leading-[1.15] max-w-4xl mb-6">
+          {/* Título Principal com text-wrap balanceado para mobile */}
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-white tracking-tight leading-snug sm:leading-[1.15] max-w-4xl mb-4 sm:mb-6 [text-wrap:balance]">
             Encontre o imóvel ideal com <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-brand-200 to-emerald-400">segurança jurídica</span> e as melhores taxas do mercado.
           </h1>
 
-          {/* Subtítulo persuasivo */}
-          <p className="text-base sm:text-xl text-slate-300 font-normal max-w-2xl mx-auto mb-10 leading-relaxed">
+          {/* Subtítulo persuasivo com text-wrap pretty */}
+          <p className="text-sm sm:text-lg lg:text-xl text-slate-300 font-normal max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed [text-wrap:pretty]">
             Elimine semanas de buscas frustrantes. Tenha um especialista sênior dedicado a encontrar, negociar e aprovar o seu imóvel sob medida, sem custo algum para você.
           </p>
 
           {/* Botões de Ação */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-14">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto mb-12 sm:mb-14">
             <button
               onClick={scrollToForm}
-              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 active:scale-95 text-white font-bold text-base sm:text-lg shadow-xl shadow-brand-600/25 transition-all flex items-center justify-center gap-3 border border-brand-400/30"
+              className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-brand-600 hover:bg-brand-500 active:scale-95 text-white font-bold text-sm sm:text-lg shadow-xl shadow-brand-600/25 transition-all flex items-center justify-center gap-3 border border-brand-400/30"
             >
               <span>Solicitar Consultoria Gratuita</span>
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
             <a
               href="https://wa.me/5511999998888?text=Olá!%20Gostaria%20de%20uma%20consultoria%20imobiliária%20VIP."
               target="_blank"
               rel="noreferrer"
-              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-white font-semibold text-base sm:text-lg border border-slate-700 hover:border-slate-600 transition-all flex items-center justify-center gap-2.5 backdrop-blur-sm"
+              className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-white font-semibold text-sm sm:text-lg border border-slate-700 hover:border-slate-600 transition-all flex items-center justify-center gap-2.5 backdrop-blur-sm"
             >
-              <MessageCircle className="w-5 h-5 text-emerald-400" />
+              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
               <span>Falar pelo WhatsApp</span>
             </a>
           </div>
