@@ -43,6 +43,13 @@ export default function Navbar() {
             >
               Imóveis
             </Link>
+            <Link
+              to="/consultoria"
+              className={`transition-colors py-1.5 ${isCurrent('/consultoria') ? 'text-brand-700 font-bold border-b-2 border-brand-700' : 'hover:text-brand-600'
+                }`}
+            >
+              Consultoria VIP
+            </Link>
 
             <a href="/#depoimentos" className="hover:text-brand-700 transition-colors py-1.5">
               Avaliações
@@ -93,6 +100,13 @@ export default function Navbar() {
               className={`p-2 rounded-lg ${isCurrent('/imoveis') ? 'text-brand-600 font-bold bg-brand-50' : 'hover:bg-gray-50'}`}
             >
               Imóveis à Venda e Locação
+            </Link>
+            <Link
+              to="/consultoria"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`p-2 rounded-lg ${isCurrent('/consultoria') ? 'text-brand-600 font-bold bg-brand-50' : 'hover:bg-gray-50'}`}
+            >
+              Consultoria VIP
             </Link>
             <a
               href="/#depoimentos"

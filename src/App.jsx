@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 
 import HomePage from './pages/HomePage';
 import PropertiesPage from './pages/PropertiesPage';
+import LandingPage from './pages/LandingPage';
 
 export default function App() {
   return (
@@ -19,6 +20,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/imoveis" element={<PropertiesPage />} />
+            <Route path="/consultoria" element={<LandingPage />} />
+            <Route path="/lp" element={<LandingPage />} />
           </Routes>
         </div>
 
